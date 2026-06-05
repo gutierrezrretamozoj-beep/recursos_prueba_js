@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SpaceBook – Reserva de Espacios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="public/styles.css"/>
+</head>
+<body>
+
+<!-- ═══════════════ LOGIN ═══════════════ -->
+<div id="login-page">
+  <div class="login-box card">
+    <div class="login-logo">Space<span style="color:var(--text)">Book</span></div>
+    <p class="subtitle">Reserva de espacios corporativos</p>
+    <div class="error-msg" id="login-error">Credenciales incorrectas. Intenta de nuevo.</div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" id="login-email" placeholder="tu@email.com"/>
+    </div>
+    <div class="form-group">
+      <label>Contraseña</label>
+      <input type="password" id="login-pass" placeholder="••••••••"/>
+    </div>
+    <button class="btn btn-primary" id="btn-login" style="width:100%;margin-top:8px">Entrar</button>
+  </div>
+</div>
+
+<!-- ═══════════════ SPA ═══════════════ -->
+<div id="app" style="display:none">
+  <!-- Sidebar de navegación -->
+  <aside id="sidebar">
+    <div class="logo">Space<span>Book</span></div>
+    <nav id="nav-links"></nav>
+    <div class="sidebar-user" id="sidebar-user-info"></div>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main id="main">
+
+    <!-- Dashboard (solo admin) -->
+    <div class="page" id="page-dashboard">
+      <h1>Dashboard</h1>
+      <p class="subtitle">Resumen general del sistema</p>
+      <div class="stats-grid" id="stats-grid"></div>
+    </div>
+
+    <!-- Reservas -->
+    <div class="page" id="page-reservas">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px">
+        <div>
+          <h1 id="reservas-title">Reservas</h1>
+          <p class="subtitle" id="reservas-sub"></p>
+        </div>
+        <button class="btn btn-primary" id="btn-nueva-reserva">+ Nueva reserva</button>
+      </div>
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Espacio</th><th>Fecha</th><th>Horario</th>
+              <th>Motivo</th><th>Estado</th><th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="reservas-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Espacios (solo admin) -->
+    <div class="page" id="page-espacios">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px">
+        <div>
+          <h1>Espacios</h1>
+          <p class="subtitle">Gestión de espacios disponibles</p>
+        </div>
+        <button class="btn btn-primary" id="btn-nuevo-espacio">+ Nuevo espacio</button>
+      </div>
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th><th>Tipo</th><th>Capacidad</th>
+              <th>Ubicación</th><th>Estado</th><th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="espacios-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ═══════════════ MODAL RESERVA ═══════════════ -->
+<div class="modal-overlay" id="modal-reserva">
+  <div class="modal">
+    <h2 id="modal-title">Nueva reserva</h2>
+    <div class="form-group">
+      <label>Espacio</label>
+      <select id="f-espacio"></select>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Fecha</label>
+        <input type="date" id="f-fecha"/>
+      </div>
+      <div class="form-group" id="f-estado-group">
+        <label>Estado</label>
+        <select id="f-estado">
+          <option value="pendiente">Pendiente</option>
+          <option value="aprobada">Aprobada</option>
+          <option value="rechazada">Rechazada</option>
+          <option value="cancelada">Cancelada</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Hora inicio</label>
+        <input type="time" id="f-inicio"/>
+      </div>
+      <div class="form-group">
+        <label>Hora fin</label>
+        <input type="time" id="f-fin"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Motivo</label>
+      <textarea id="f-motivo" rows="2" placeholder="Descripción breve..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="btn-cancel-reserva">Cancelar</button>
+      <button class="btn btn-primary" id="btn-save-reserva">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ MODAL ESPACIO ═══════════════ -->
+<div class="modal-overlay" id="modal-espacio">
+  <div class="modal">
+    <h2 id="modal-espacio-title">Nuevo espacio</h2>
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" id="e-nombre" placeholder="Sala A"/>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Tipo</label>
+        <select id="e-tipo">
+          <option>Sala de reuniones</option>
+          <option>Oficina privada</option>
+          <option>Coworking</option>
+          <option>Auditorio</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Capacidad</label>
+        <input type="number" id="e-capacidad" placeholder="10" min="1"/>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Ubicación</label>
+        <input type="text" id="e-ubicacion" placeholder="Piso 3"/>
+      </div>
+      <div class="form-group">
+        <label>Estado</label>
+        <select id="e-estado">
+          <option value="disponible">Disponible</option>
+          <option value="no disponible">No disponible</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="btn-cancel-espacio">Cancelar</button>
+      <button class="btn btn-primary" id="btn-save-espacio">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast de notificaciones -->
+<div id="toast"></div>
+
+<!-- Punto de entrada de la app -->
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

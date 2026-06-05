@@ -1,0 +1,67 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@test.com",
+      "password": "A123456",
+      "role": "admin",
+      "name": "Administrador"
+    },
+    {
+      "id": 2,
+      "email": "user@test.com",
+      "password": "A123456",
+      "role": "user",
+      "name": "Usuario"
+    },
+    {
+      "id": 3,
+      "email": "user2@test.com",
+      "password": "A123456",
+      "role": "user",
+      "name": "Usuario 2"
+    }
+  ],
+  "reservations": [
+    {
+      "id": 1,
+      "userId": 2,
+      "workspace": "Sala A",
+      "date": "2026-01-15",
+      "startHour": "08:00",
+      "endHour": "09:00",
+      "reason": "Sprint Planning",
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "workspace": "Sala B",
+      "date": "2026-01-15",
+      "startHour": "10:00",
+      "endHour": "11:00",
+      "reason": "Daily Meeting",
+      "status": "approved"
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "workspace": "Oficina 301",
+      "date": "2026-01-16",
+      "startHour": "14:00",
+      "endHour": "15:00",
+      "reason": "Revisión de código",
+      "status": "rejected"
+    },
+    {
+      "id": 4,
+      "userId": 3,
+      "workspace": "Auditorio",
+      "date": "2026-01-17",
+      "startHour": "09:00",
+      "endHour": "10:00",
+      "reason": "Capacitación",
+      "status": "cancelled"
+    }
+  ]
+}
