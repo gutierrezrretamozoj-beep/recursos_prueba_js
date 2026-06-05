@@ -1,0 +1,59 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Ana Maria Polo",
+      "email": "manager@test.com",
+      "password": "123456",
+      "role": "manager"
+    },
+    {
+      "id": 2,
+      "name": "Carlos López",
+      "email": "user@test.com",
+      "password": "123456",
+      "role": "collaborator"
+    },
+    {
+      "id": 3,
+      "name": "María Torres",
+      "email": "maria@test.com",
+      "password": "123456",
+      "role": "collaborator"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "Website Redesign",
+      "description": "Rediseño completo del sitio web corporativo con nueva identidad visual.",
+      "status": "In Progress",
+      "createdAt": "2025-01-15",
+      "assignedTo": 2
+    },
+    {
+      "id": 2,
+      "name": "Mobile App v2",
+      "description": "Segunda versión de la aplicación móvil con nuevas funcionalidades.",
+      "status": "Pending",
+      "createdAt": "2025-02-01",
+      "assignedTo": 3
+    },
+    {
+      "id": 3,
+      "name": "API Integration",
+      "description": "Integración con servicios externos de pagos y envíos.",
+      "status": "Completed",
+      "createdAt": "2025-01-10",
+      "assignedTo": 2
+    },
+    {
+      "id": 4,
+      "name": "Dashboard Analytics",
+      "description": "Panel de analíticas en tiempo real para el equipo directivo.",
+      "status": "In Progress",
+      "createdAt": "2025-02-20",
+      "assignedTo": 3
+    }
+  ]
+}
